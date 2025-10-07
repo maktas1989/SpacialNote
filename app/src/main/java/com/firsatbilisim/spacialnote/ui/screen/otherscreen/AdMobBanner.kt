@@ -1,0 +1,40 @@
+package com.firsatbilisim.spacialnote.ui.screen.otherscreen
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.viewinterop.AndroidView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import androidx.compose.ui.unit.dp
+
+@Composable
+fun AdMobBanner(modifier: Modifier, adId: String) {
+    Column(
+        modifier = modifier
+    ) {
+        Spacer(
+            modifier = Modifier
+                .size(24.dp)
+        )
+        AndroidView(
+            modifier = Modifier
+                .fillMaxWidth(),
+            factory = { context ->
+                AdView(context).apply {
+                    setAdSize(AdSize.BANNER)
+                    adUnitId = adId
+                    // Request an ad
+                    loadAd(AdRequest.Builder().build())
+                }
+            }
+        )
+    }
+}
+
+
